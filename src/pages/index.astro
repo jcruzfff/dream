@@ -11,20 +11,13 @@ import Layout from "../layouts/Layout.astro";
       </div>
       <div class="nav-links">
         <a href="/documentation" class="nav-link">Documentation</a>
-        <button class="theme-toggle">
-          <svg
-            width="20"
-            height="20"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-            ></path>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="moon-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+          <svg class="sun-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            <circle cx="12" cy="12" r="5" stroke-width="2"/>
           </svg>
         </button>
       </div>
@@ -50,13 +43,44 @@ import Layout from "../layouts/Layout.astro";
   </main>
 </Layout>
 
+<script>
+  const themeToggle = document.getElementById('themeToggle');
+  const moonIcon = themeToggle?.querySelector('.moon-icon') as HTMLElement | null;
+  const sunIcon = themeToggle?.querySelector('.sun-icon') as HTMLElement | null;
+  
+  // Check for saved theme preference
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  
+  // Update icon visibility based on current theme
+  function updateIcons(theme: string) {
+    if (moonIcon && sunIcon) {
+      moonIcon.style.display = theme === 'light' ? 'none' : 'block';
+      sunIcon.style.display = theme === 'light' ? 'block' : 'none';
+    }
+  }
+  
+  // Initialize icons
+  updateIcons(savedTheme);
+  
+  // Toggle theme
+  themeToggle?.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateIcons(newTheme);
+  });
+</script>
+
 <style>
   .navbar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(var(--background-rgb), 0.5);
     backdrop-filter: blur(8px);
     z-index: 1000;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -97,25 +121,12 @@ import Layout from "../layouts/Layout.astro";
     text-decoration: none;
     font-size: 0.9375rem;
     transition: color 0.2s;
+    opacity: 0.8;
   }
 
   .nav-link:hover {
+    opacity: 1;
     color: var(--accent-blue);
-  }
-
-  .theme-toggle {
-    background: none;
-    border: none;
-    padding: 8px;
-    color: var(--text-primary);
-    cursor: pointer;
-    border-radius: 4px;
-    transition: all 0.2s;
-  }
-
-  .theme-toggle:hover {
-    background: var(--surface);
-    color: var(--text-primary);
   }
 
   .hero {
@@ -130,13 +141,13 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .hero::before {
-    content: '';
+    content: "";
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('/background.png');
+    background-image: url("/background.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -145,7 +156,7 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .hero::after {
-    content: '';
+    content: "";
     position: fixed;
     top: 0;
     left: 0;
@@ -153,8 +164,8 @@ import Layout from "../layouts/Layout.astro";
     bottom: 0;
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.7) 0%,
-      rgba(0, 0, 0, 0.5) 100%
+      rgba(var(--background-rgb), 0.7) 0%,
+      rgba(var(--background-rgb), 0.5) 100%
     );
     z-index: -1;
   }
@@ -219,18 +230,18 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .secondary-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(var(--text-primary-rgb), 0.05);
+    border: 1px solid rgba(var(--text-primary-rgb), 0.1);
   }
 
   .secondary-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(var(--text-primary-rgb), 0.1);
+    border-color: rgba(var(--text-primary-rgb), 0.2);
     transform: translateY(-2px);
     box-shadow:
-      0 0 25px rgba(255, 255, 255, 0.1),
-      0 0 50px rgba(255, 255, 255, 0.05),
-      inset 0 0 15px rgba(255, 255, 255, 0.05);
+      0 0 25px rgba(var(--text-primary-rgb), 0.1),
+      0 0 50px rgba(var(--text-primary-rgb), 0.05),
+      inset 0 0 15px rgba(var(--text-primary-rgb), 0.05);
   }
 
   @media (max-width: 768px) {
@@ -270,120 +281,6 @@ import Layout from "../layouts/Layout.astro";
     }
   }
 
-  /* Ensure all text is white */
-  .navbar,
-  .hero,
-  .hero-content,
-  .nav-link,
-  .theme-toggle,
-  h1,
-  .subtitle,
-  .primary-btn,
-  .secondary-btn,
-  .logo span {
-    color: var(--text-primary) !important; /* Force white color */
-  }
-
-  /* Update specific styles */
-  .nav-link {
-    color: var(--text-primary);
-    opacity: 0.8;
-    transition: opacity 0.2s;
-  }
-
-  .nav-link:hover {
-    opacity: 1;
-    color: var(--text-primary);
-  }
-
-  .theme-toggle {
-    color: var(--text-primary);
-  }
-
-  .theme-toggle:hover {
-    color: var(--text-primary);
-  }
-
-  h1 {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    /* Remove any gradient or background effects */
-    background: none;
-    -webkit-text-fill-color: var(--text-primary);
-  }
-
-  .subtitle {
-    font-size: 1.5rem;
-    color: var(--text-primary);
-    opacity: 0.9;
-    margin-bottom: 3rem;
-    line-height: 1.4;
-  }
-
-  .primary-btn,
-  .secondary-btn {
-    color: var(--text-primary);
-  }
-
-  /* Ensure text remains white even with backdrop-filter */
-  .primary-btn::after,
-  .secondary-btn::after {
-    color: var(--text-primary);
-  }
-
-  /* Update existing styles */
-  .hero {
-    min-height: 100vh;
-    padding: 2rem;
-  }
-
-  /* Add responsive styles */
-  @media (max-width: 768px) {
-    .navbar {
-      height: 70px;
-    }
-
-    .nav-content {
-      padding: 0 1rem;
-    }
-
-    .logo span {
-      font-size: 1.125rem;
-    }
-
-    .logo img {
-      height: 28px;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      text-align: center;
-    }
-
-    .subtitle {
-      font-size: 1.125rem;
-      text-align: center;
-    }
-
-    .hero {
-      padding: 1rem;
-    }
-
-    .cta-buttons {
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .primary-btn,
-    .secondary-btn {
-      width: 100%;
-      text-align: center;
-    }
-  }
-
   @media (max-width: 480px) {
     h1 {
       font-size: 2rem;
@@ -398,5 +295,28 @@ import Layout from "../layouts/Layout.astro";
       padding: 0.625rem 1.5rem;
       font-size: 0.9375rem;
     }
+  }
+
+  .theme-toggle {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+  }
+
+  .theme-toggle:hover {
+    background: var(--surface);
+  }
+
+  .moon-icon,
+  .sun-icon {
+    color: var(--text-primary);
+    transition: color 0.2s;
   }
 </style>
