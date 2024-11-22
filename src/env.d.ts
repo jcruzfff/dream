@@ -8,7 +8,7 @@ interface Window {
 
 declare module 'chart.js' {
   interface GridLineOptions {
-    drawBorder?: boolean;
+    border?: boolean;
     color?: string;
     display?: boolean;
   }
