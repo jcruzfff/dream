@@ -7,21 +7,26 @@ interface Window {
 }
 
 declare module 'chart.js' {
+  interface GridLineOptions {
+    drawBorder?: boolean;
+    color?: string;
+    display?: boolean;
+  }
+
   interface ChartConfiguration {
     options?: {
       scales?: {
         x?: {
-          grid?: {
-            display?: boolean;
-            border?: boolean;
+          grid?: Partial<GridLineOptions>;
+          ticks?: {
+            color?: string;
+            font?: {
+              size?: number;
+            };
           };
         };
         y?: {
-          grid?: {
-            display?: boolean;
-            border?: boolean;
-            color?: string;
-          };
+          grid?: Partial<GridLineOptions>;
           ticks?: {
             color?: string;
             callback?: (value: any) => string;

@@ -525,7 +525,7 @@ import '../styles/documentation.css';
           y: {
             grid: {
               color: 'rgba(255, 255, 255, 0.1)',
-              border: false
+              drawBorder: false
             },
             ticks: {
               color: 'rgb(139, 139, 139)',
@@ -540,7 +540,7 @@ import '../styles/documentation.css';
           x: {
             grid: {
               display: false,
-              border: true
+              drawBorder: false
             },
             ticks: {
               color: 'rgb(139, 139, 139)',
@@ -554,18 +554,17 @@ import '../styles/documentation.css';
     });
   }
 
-  // Add type assertions for DOM elements
-  const cards = document.querySelectorAll('.card') as NodeListOf<HTMLElement>;
+  // Update card element typing
+  const cards = document.querySelectorAll('.card') as NodeListOf<HTMLDivElement>;
 
   cards.forEach(card => {
-    const glow = card.querySelector('.glow') as HTMLElement;
+    const glow = card.querySelector('.glow') as HTMLDivElement;
     
     card.addEventListener('mousemove', (e: MouseEvent) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
       
-      // Update glow position
       if (glow) {
         glow.style.left = `${x}px`;
         glow.style.top = `${y}px`;
