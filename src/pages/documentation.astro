@@ -396,7 +396,7 @@ import '../styles/documentation.css';
   import Chart from 'chart.js/auto';
 
   // Token Distribution Chart
-  const distributionCtx = document.getElementById('distributionChart')?.getContext('2d');
+  const distributionCtx = (document.getElementById('distributionChart') as HTMLCanvasElement)?.getContext('2d');
   if (distributionCtx) {
     new Chart(distributionCtx, {
       type: 'doughnut',
@@ -458,7 +458,7 @@ import '../styles/documentation.css';
   }
 
   // Growth Chart
-  const growthCtx = document.getElementById('growthChart')?.getContext('2d');
+  const growthCtx = (document.getElementById('growthChart') as HTMLCanvasElement)?.getContext('2d');
   if (growthCtx) {
     const months = Array.from({length: 13}, (_, i) => i);
     const values = months.map(month => 
@@ -525,7 +525,7 @@ import '../styles/documentation.css';
           y: {
             grid: {
               color: 'rgba(255, 255, 255, 0.1)',
-              drawBorder: false
+              border: false
             },
             ticks: {
               color: 'rgb(139, 139, 139)',
@@ -539,7 +539,8 @@ import '../styles/documentation.css';
           },
           x: {
             grid: {
-              display: false
+              display: false,
+              border: true
             },
             ticks: {
               color: 'rgb(139, 139, 139)',
@@ -553,66 +554,21 @@ import '../styles/documentation.css';
     });
   }
 
-  document.querySelectorAll('.card').forEach(card => {
+  // Add type assertions for DOM elements
+  const cards = document.querySelectorAll('.card') as NodeListOf<HTMLElement>;
+
+  cards.forEach(card => {
     const glow = card.querySelector('.glow') as HTMLElement;
-    const border = card.querySelector('.card::before') as HTMLElement;
     
     card.addEventListener('mousemove', (e: MouseEvent) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
       
-      // Calculate distance from edges
-      const distanceFromLeft = x;
-      const distanceFromRight = rect.width - x;
-      const distanceFromTop = y;
-      const distanceFromBottom = rect.height - y;
-      
-      // Border effect threshold
-      const borderThreshold = 50;
-      
-      // Check if mouse is near any edge
-      const isNearEdge = 
-        distanceFromLeft < borderThreshold ||
-        distanceFromRight < borderThreshold ||
-        distanceFromTop < borderThreshold ||
-        distanceFromBottom < borderThreshold;
-      
+      // Update glow position
       if (glow) {
-        // Update glow position
         glow.style.left = `${x}px`;
         glow.style.top = `${y}px`;
-        
-        if (isNearEdge) {
-          // Intensify border glow when near edges
-          const minDistance = Math.min(
-            distanceFromLeft,
-            distanceFromRight,
-            distanceFromTop,
-            distanceFromBottom
-          );
-          const opacity = 0.5 * (1 - minDistance / borderThreshold);
-          card.style.setProperty('--border-opacity', opacity.toString());
-          glow.style.opacity = '0.15'; // Reduced center glow
-          card.style.borderColor = `rgba(59, 130, 246, ${opacity})`;
-        } else {
-          // Normal center glow when not near edges
-          glow.style.opacity = '0.35';
-          card.style.borderColor = 'var(--border-color)';
-        }
-      }
-    });
-
-    card.addEventListener('mouseleave', () => {
-      if (glow) {
-        glow.style.opacity = '0';
-        card.style.borderColor = 'var(--border-color)';
-      }
-    });
-
-    card.addEventListener('mouseenter', () => {
-      if (glow) {
-        glow.style.transition = 'opacity 0.2s ease';
       }
     });
   });
@@ -693,6 +649,70 @@ import '../styles/documentation.css';
 
   .section-content li::before {
     margin-right: 0.5rem;
+  }
+
+  .card {
+    position: relative;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: transform 0.2s ease;
+    text-decoration: none;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(59, 130, 246, 0.8);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+  }
+
+  .glow {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(
+      circle,
+      rgba(59, 130, 246, 0.6) 0%,
+      rgba(59, 130, 246, 0.4) 25%,
+      rgba(59, 130, 246, 0.2) 50%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: none;
+    mix-blend-mode: screen;
+  }
+
+  .card:hover .glow {
+    opacity: 1;
+  }
+
+  .card-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-content h3 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+  }
+
+  .card-content p {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    margin: 0;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
   }
 </style>
 --- 

@@ -14,5 +14,8 @@
     "astro": "^4.16.13",
     "chart.js": "^4.4.6",
     "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@types/chart.js": "^2.9.41"
   }
 }
