@@ -8,32 +8,51 @@ interface Window {
 
 declare module 'chart.js' {
   interface GridLineOptions {
-    border?: boolean;
-    color?: string;
     display?: boolean;
+    color?: string;
+    drawBorder?: boolean;
+    borderColor?: string;
+    borderWidth?: number;
+  }
+
+  interface ScaleOptions {
+    grid?: Partial<GridLineOptions>;
+    ticks?: {
+      color?: string;
+      callback?: (value: any) => string;
+      font?: {
+        size?: number;
+      };
+    };
   }
 
   interface ChartConfiguration {
     options?: {
       scales?: {
-        x?: {
-          grid?: Partial<GridLineOptions>;
-          ticks?: {
+        x?: ScaleOptions;
+        y?: ScaleOptions;
+      };
+      plugins?: {
+        legend?: {
+          position?: string;
+          labels?: {
             color?: string;
+            padding?: number;
             font?: {
               size?: number;
             };
           };
         };
-        y?: {
-          grid?: Partial<GridLineOptions>;
-          ticks?: {
-            color?: string;
-            callback?: (value: any) => string;
-            font?: {
-              size?: number;
-            };
+        tooltip?: {
+          backgroundColor?: string;
+          titleColor?: string;
+          bodyColor?: string;
+          padding?: number;
+          bodyFont?: {
+            size?: number;
           };
+          bodySpacing?: number;
+          boxPadding?: number;
         };
       };
     };
