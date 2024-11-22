@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="DREAM Token">
@@ -12,8 +12,19 @@ import Layout from '../layouts/Layout.astro';
       <div class="nav-links">
         <a href="/documentation" class="nav-link">Documentation</a>
         <button class="theme-toggle">
-          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          <svg
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+            ></path>
           </svg>
         </button>
       </div>
@@ -25,15 +36,15 @@ import Layout from '../layouts/Layout.astro';
       <h1>Welcome to DREAM</h1>
       <p class="subtitle">The Future of Community-Driven Tokenomics</p>
       <div class="cta-buttons">
-        <a href="https://dexscreener.com/base/0xc2Ebb232C42cF6af79DC991C5CDd5d04d2DA2dE8" 
-           target="_blank" 
-           rel="noopener noreferrer" 
-           class="primary-btn">
+        <a
+          href="https://dexscreener.com/base/0xc2Ebb232C42cF6af79DC991C5CDd5d04d2DA2dE8"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="primary-btn"
+        >
           Buy DREAM
         </a>
-        <a href="/documentation" class="secondary-btn">
-          Learn More
-        </a>
+        <a href="/documentation" class="secondary-btn"> Learn More </a>
       </div>
     </div>
   </main>
@@ -45,22 +56,20 @@ import Layout from '../layouts/Layout.astro';
     top: 0;
     left: 0;
     right: 0;
-    background: var(--background);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
     z-index: 1000;
-    border-bottom: 1px solid var(--border-color);
-    height: 84px;
-    display: flex;
-    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .nav-content {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
+    height: 84px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
   }
 
   .logo {
@@ -114,32 +123,47 @@ import Layout from '../layouts/Layout.astro';
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--background);
-    padding: 2rem;
+    padding: 84px 2rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
     position: relative;
-    overflow: hidden;
   }
 
-  /* Add subtle gradient overlay */
   .hero::before {
     content: '';
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at top right, 
-      rgba(59, 130, 246, 0.1), 
-      transparent 60%);
-    pointer-events: none;
+    background-image: url('/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.6;
+  }
+
+  .hero::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+    z-index: -1;
   }
 
   .hero-content {
-    text-align: center;
-    color: var(--text-primary);
+    width: 100%;
     max-width: 800px;
-    position: relative;
-    z-index: 1;
+    margin: 0 auto;
+    text-align: center;
   }
 
   h1 {
@@ -164,7 +188,8 @@ import Layout from '../layouts/Layout.astro';
     justify-content: center;
   }
 
-  .primary-btn, .secondary-btn {
+  .primary-btn,
+  .secondary-btn {
     padding: 0.75rem 2rem;
     border-radius: 24px;
     text-decoration: none;
@@ -187,7 +212,7 @@ import Layout from '../layouts/Layout.astro';
     transform: translateY(-2px);
     background: rgba(59, 130, 246, 0.3);
     border-color: rgba(59, 130, 246, 0.6);
-    box-shadow: 
+    box-shadow:
       0 0 25px rgba(59, 130, 246, 0.2),
       0 0 50px rgba(59, 130, 246, 0.15),
       inset 0 0 15px rgba(59, 130, 246, 0.15);
@@ -202,7 +227,7 @@ import Layout from '../layouts/Layout.astro';
     background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
-    box-shadow: 
+    box-shadow:
       0 0 25px rgba(255, 255, 255, 0.1),
       0 0 50px rgba(255, 255, 255, 0.05),
       inset 0 0 15px rgba(255, 255, 255, 0.05);
@@ -211,6 +236,14 @@ import Layout from '../layouts/Layout.astro';
   @media (max-width: 768px) {
     .nav-content {
       padding: 0 1rem;
+    }
+
+    .hero {
+      padding: 84px 1rem 1rem;
+    }
+
+    .hero-content {
+      padding: 0;
     }
 
     h1 {
@@ -225,16 +258,21 @@ import Layout from '../layouts/Layout.astro';
       flex-direction: column;
     }
 
-    .primary-btn, .secondary-btn {
+    .primary-btn,
+    .secondary-btn {
       width: 100%;
       text-align: center;
       justify-content: center;
     }
+
+    .hero::before {
+      background-attachment: scroll;
+    }
   }
 
   /* Ensure all text is white */
-  .navbar, 
-  .hero, 
+  .navbar,
+  .hero,
   .hero-content,
   .nav-link,
   .theme-toggle,
@@ -285,12 +323,80 @@ import Layout from '../layouts/Layout.astro';
     line-height: 1.4;
   }
 
-  .primary-btn, .secondary-btn {
+  .primary-btn,
+  .secondary-btn {
     color: var(--text-primary);
   }
 
   /* Ensure text remains white even with backdrop-filter */
-  .primary-btn::after, .secondary-btn::after {
+  .primary-btn::after,
+  .secondary-btn::after {
     color: var(--text-primary);
+  }
+
+  /* Update existing styles */
+  .hero {
+    min-height: 100vh;
+    padding: 2rem;
+  }
+
+  /* Add responsive styles */
+  @media (max-width: 768px) {
+    .navbar {
+      height: 70px;
+    }
+
+    .nav-content {
+      padding: 0 1rem;
+    }
+
+    .logo span {
+      font-size: 1.125rem;
+    }
+
+    .logo img {
+      height: 28px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 1.125rem;
+      text-align: center;
+    }
+
+    .hero {
+      padding: 1rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      padding: 0.625rem 1.5rem;
+      font-size: 0.9375rem;
+    }
   }
 </style>

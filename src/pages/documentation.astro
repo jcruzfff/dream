@@ -668,9 +668,107 @@ import '../styles/documentation.css';
 
   .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
     margin: 2rem 0;
+    width: 100%;
+  }
+
+  /* Add responsive styles */
+  @media (max-width: 768px) {
+    .content-wrapper {
+      padding: 1rem;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    .description {
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .cards-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .doc-section {
+      padding: 2rem 1rem;
+    }
+
+    .formula {
+      font-size: 1rem;
+      padding: 0.5rem;
+      overflow-x: auto;
+    }
+
+    .chart-container {
+      height: 300px;
+      margin: 1rem 0;
+      padding: 0.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    header h1 {
+      font-size: 1.75rem;
+    }
+
+    .card {
+      padding: 1rem;
+    }
+
+    .formula-container,
+    .example-container {
+      padding: 1rem;
+    }
+  }
+
+  /* Update content wrapper to control internal spacing */
+  .content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .content-wrapper {
+      padding: 1rem;
+    }
+  }
+
+  /* Update doc sections */
+  .doc-section {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Responsive updates */
+  @media (max-width: 768px) {
+    .content-wrapper {
+      padding: 1rem;
+    }
+
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .chart-container {
+      width: 100%;
+      overflow-x: auto;
+    }
+  }
+
+  /* Ensure formulas don't overflow */
+  .formula-container,
+  .example-container {
+    width: 100%;
+    overflow-x: auto;
   }
 </style>
 --- 
