@@ -1,0 +1,225 @@
+---
+import Layout from './Layout.astro';
+import '../styles/docs-layout.css';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<Layout title={title}>
+  <div class="docs-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-content">
+        <a href="/" class="home-button">
+          <div class="logo">
+            <img src="/dream-logo.svg" alt="DREAM" />
+            <span>DREAM</span>
+          </div>
+        </a>
+        
+        <div class="sidebar-header">
+          <h3>Resources</h3>
+        </div>
+        <nav class="sidebar-nav">
+          <ul>
+            <li>
+              <a href="#tokenomics" class="nav-item">
+                <span>Tokenomics</span>
+              </a>
+            </li>
+            <li>
+              <a href="#staking" class="nav-item">
+                <span>Staking</span>
+              </a>
+            </li>
+            <li>
+              <a href="#mathematics" class="nav-item">
+                <span>Mathematics</span>
+              </a>
+            </li>
+            <li>
+              <a href="#governance" class="nav-item">
+                <span>Governance</span>
+              </a>
+            </li>
+            <li>
+              <a href="#nfts" class="nav-item">
+                <span>NFTs</span>
+              </a>
+            </li>
+            <li>
+              <a href="#contracts" class="nav-item">
+                <span>Smart Contracts</span>
+              </a>
+            </li>
+            <li>
+              <a href="#community" class="nav-item">
+                <span>Community</span>
+              </a>
+            </li>
+            <li>
+              <a href="#resources" class="nav-item">
+                <span>Resources</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header with Search and Nav -->
+      <div class="header-container">
+        <div class="search-container">
+          <div class="search-wrapper">
+            <div class="search-icon">
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+            <input 
+              type="text" 
+              placeholder="Find something..." 
+              class="search-input"
+              id="searchInput"
+            />
+            <span class="search-shortcut">⌘K</span>
+            <div class="search-results" id="searchResults"></div>
+          </div>
+        </div>
+        <div class="header-nav">
+          <a href="/documentation" class="nav-link active">Documentation</a>
+          <button class="theme-toggle">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="content">
+        <slot />
+      </div>
+
+      <!-- Footer -->
+      <footer class="docs-footer">
+        <div class="feedback">
+          <span>Was this page helpful?</span>
+          <button class="feedback-btn">Yes</button>
+          <button class="feedback-btn">No</button>
+        </div>
+        <div class="copyright">
+          © Copyright 2024. All rights reserved.
+        </div>
+      </footer>
+    </main>
+  </div>
+</Layout>
+
+<script>
+  // Search functionality
+  const searchInput = document.getElementById('searchInput') as HTMLInputElement;
+  const searchResults = document.getElementById('searchResults');
+  
+  // Get all sections and their content
+  const sections = document.querySelectorAll('.doc-section');
+  const searchableContent = Array.from(sections).map(section => ({
+    id: section.id,
+    title: section.querySelector('h2')?.textContent || '',
+    content: section.textContent || '',
+    headings: Array.from(section.querySelectorAll('h3')).map(h => h.textContent || '')
+  }));
+
+  function performSearch(query: string) {
+    if (!searchResults) return;
+    
+    if (!query.trim()) {
+      searchResults.classList.remove('active');
+      return;
+    }
+
+    const results = searchableContent.flatMap(section => {
+      const matchingHeadings = section.headings.filter(heading =>
+        heading.toLowerCase().includes(query.toLowerCase())
+      );
+
+      if (
+        section.title.toLowerCase().includes(query.toLowerCase()) ||
+        section.content.toLowerCase().includes(query.toLowerCase()) ||
+        matchingHeadings.length > 0
+      ) {
+        return [{
+          id: section.id,
+          title: section.title,
+          heading: matchingHeadings[0] || section.title
+        }];
+      }
+      return [];
+    });
+
+    if (results.length > 0) {
+      searchResults.innerHTML = results
+        .map(result => `
+          <div class="search-result-item" data-section-id="${result.id}">
+            <div class="result-title">${result.heading}</div>
+            <div class="result-section">${result.title}</div>
+          </div>
+        `)
+        .join('');
+      searchResults.classList.add('active');
+    } else {
+      searchResults.innerHTML = `
+        <div class="search-result-item">
+          <div class="result-title">No results found</div>
+        </div>
+      `;
+      searchResults.classList.add('active');
+    }
+  }
+
+  // Event listeners
+  searchInput?.addEventListener('input', (e) => {
+    performSearch((e.target as HTMLInputElement).value);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!searchInput?.contains(e.target as Node)) {
+      searchResults?.classList.remove('active');
+    }
+  });
+
+  searchResults?.addEventListener('click', (e) => {
+    const resultItem = (e.target as HTMLElement).closest('.search-result-item');
+    if (resultItem) {
+      const sectionId = resultItem.getAttribute('data-section-id');
+      if (sectionId) {
+        const section = document.getElementById(sectionId);
+        section?.scrollIntoView({ behavior: 'smooth' });
+        searchResults.classList.remove('active');
+        searchInput.value = '';
+      }
+    }
+  });
+
+  // Command/Ctrl + K to focus search
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      searchInput?.focus();
+    }
+  });
+
+  // Close search results on Escape
+  searchInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      searchResults?.classList.remove('active');
+      searchInput.blur();
+    }
+  });
+</script> 

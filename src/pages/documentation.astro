@@ -1,0 +1,698 @@
+---
+import DocsLayout from '../layouts/DocsLayout.astro';
+import '../styles/documentation.css';
+---
+
+<DocsLayout title="DREAM Documentation">
+  <div class="content-wrapper">
+    <header>
+      <h1>Developer Documentation</h1>
+      <p class="description">
+        DREAM is a revolutionary meme token that combines community engagement with real utility. 
+        The protocol uses innovative tokenomics and community-driven governance to create lasting value for holders.
+      </p>
+    </header>
+
+    <!-- Cards Section -->
+    <section class="cards-section">
+      <div class="cards-grid">
+        <a href="#tokenomics" class="card">
+          <div class="glow"></div>
+          <div class="card-content">
+            <h3>Tokenomics</h3>
+            <p>Distribution, supply mechanics, and economic model.</p>
+          </div>
+        </a>
+
+        <a href="#staking" class="card">
+          <div class="glow"></div>
+          <div class="card-content">
+            <h3>Staking</h3>
+            <p>Earn rewards by staking your DREAM tokens.</p>
+          </div>
+        </a>
+
+        <a href="#governance" class="card">
+          <div class="glow"></div>
+          <div class="card-content">
+            <h3>Governance</h3>
+            <p>Participate in community-driven decision making.</p>
+          </div>
+        </a>
+
+        <a href="#nfts" class="card">
+          <div class="glow"></div>
+          <div class="card-content">
+            <h3>NFTs</h3>
+            <p>Explore DREAM's NFT ecosystem and collections.</p>
+          </div>
+        </a>
+
+        <a href="#contracts" class="card">
+          <div class="glow"></div>
+          <div class="card-content">
+            <h3>Smart Contracts</h3>
+            <p>Review contract documentation and audits.</p>
+          </div>
+        </a>
+
+        <a href="#community" class="card">
+          <div class="glow"></div>
+          <div class="card-content">
+            <h3>Community</h3>
+            <p>Join the DREAM community and events.</p>
+          </div>
+        </a>
+
+        <a href="#mathematics" class="card">
+          <div class="glow"></div>
+          <div class="card-content">
+            <h3>Mathematics</h3>
+            <p>Understanding the mathematical principles behind collective staking.</p>
+          </div>
+        </a>
+
+        <a href="#resources" class="card">
+          <div class="glow"></div>
+          <div class="card-content">
+            <h3>Resources</h3>
+            <p>Additional tools, guides, and references for the DREAM ecosystem.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Documentation Sections -->
+    <section id="tokenomics" class="doc-section">
+      <h2>Tokenomics</h2>
+      <div class="section-content">
+        <h3>Overview</h3>
+        <p>Dreamer Token (DREAM) operates with a robust and transparent tokenomic structure designed to empower the community, ensure sustainability, and incentivize long-term participation.</p>
+        
+        <h3>Token Details</h3>
+        <ul>
+          <li>Token Name: Dreamer</li>
+          <li>Symbol: DREAM</li>
+          <li>Blockchain: Ethereum (ERC-20)</li>
+          <li>Total Supply: 1,000,000,000 DREAM</li>
+        </ul>
+
+        <h3>Distribution</h3>
+        <div class="chart-container">
+          <canvas id="distributionChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section id="staking" class="doc-section">
+      <h2>Staking</h2>
+      <div class="section-content">
+        <h3>Overview</h3>
+        <p>Staking in the Dreamer ecosystem is more than just earning rewards—it's a testament to the power of collective dreaming. By staking DREAM tokens, participants actively secure the network, reduce token circulation, and create a foundation for shared prosperity.</p>
+        
+        <h3>How Staking Works</h3>
+        <ul>
+          <li>Lock DREAM Tokens: Stake tokens via the official staking platform.</li>
+          <li>Earn Rewards: Rewards are distributed periodically based on your stake.</li>
+          <li>Reinvestment Option: Compound rewards for exponential growth.</li>
+          <li>Withdraw: After the staking term ends, withdraw tokens and earned rewards.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="mathematics" class="doc-section">
+      <h2>Mathematics of Collective Compounding</h2>
+      <div class="section-content">
+        <h3>Overview</h3>
+        <p>
+          The power of collective staking in the DREAM ecosystem can be understood through mathematical modeling. 
+          When a community of dreamers stakes together, the compound effect creates exponential growth potential.
+        </p>
+
+        <h3>Compound Interest Formula</h3>
+        <div class="formula-container">
+          <div class="formula">
+            V(t) = P · (1 + r/n)^(n·t)
+          </div>
+          <div class="formula-legend">
+            <p>Where:</p>
+            <ul>
+              <li>V(t): Future value of staked DREAM after time t</li>
+              <li>P: Initial stake amount</li>
+              <li>r: Annual staking reward rate (as decimal)</li>
+              <li>n: Number of compounding periods per year</li>
+              <li>t: Time in years</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>Community Staking Example</h3>
+        <div class="example-container">
+          <p>If 10,000 users each stake 1,000 DREAM with a 10% annual reward rate (compounded daily):</p>
+          
+          <div class="calculation">
+            <p>Initial community stake:</p>
+            <div class="formula">
+              10,000 · 1,000 = 10,000,000 DREAM
+            </div>
+          </div>
+
+          <div class="calculation">
+            <p>After 1 year:</p>
+            <div class="formula">
+              V(1) = 10,000,000 · (1 + 0.10/365)^365 ≈ 11,051,709 DREAM
+            </div>
+          </div>
+
+          <div class="result">
+            <p>This represents a 10.5% growth in total staked value, demonstrating the power of collective participation.</p>
+          </div>
+        </div>
+
+        <h3>Growth Visualization</h3>
+        <div class="chart-container">
+          <canvas id="growthChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section id="governance" class="doc-section">
+      <h2>Governance</h2>
+      <div class="section-content">
+        <h3>Overview</h3>
+        <p>Dreamer governance is rooted in decentralization, allowing every token holder to play an active role in shaping the project's future.</p>
+        
+        <h3>Governance Framework</h3>
+        <ul>
+          <li>Proposal Submission: Holders with a minimum threshold of DREAM can submit proposals.</li>
+          <li>Community Discussion: All proposals are discussed on forums and social channels.</li>
+          <li>Voting: DREAM tokens serve as voting power (1 DREAM = 1 vote).</li>
+          <li>Execution: Approved proposals are implemented through transparent smart contracts.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="nfts" class="doc-section">
+      <h2>NFTs</h2>
+      <div class="section-content">
+        <h3>Overview</h3>
+        <p>Non-Fungible Tokens (NFTs) in the Dreamer ecosystem embody the spirit of dreaming big. Each NFT represents not just digital ownership but a piece of the shared journey.</p>
+        
+        <h3>Use Cases</h3>
+        <ul>
+          <li>Exclusive Access: Unlock private events, gated content, and early access to features.</li>
+          <li>Milestone Commemoration: Celebrate community achievements through limited-edition NFTs.</li>
+          <li>Tradable Assets: DREAM NFTs can be sold or traded on marketplaces.</li>
+        </ul>
+
+        <h3>Future of DREAM NFTs</h3>
+        <p>Dreamer plans to integrate NFTs into the metaverse, where they will serve as keys to virtual events, spaces, and experiences that align with the community's vision.</p>
+        
+        <h3>NFT Benefits</h3>
+        <ul>
+          <li>Governance Rights: Special voting power in specific NFT-related proposals</li>
+          <li>Revenue Sharing: Potential earnings from NFT marketplace fees</li>
+          <li>Community Status: Unique roles and recognition in the DREAM community</li>
+          <li>Exclusive Merchandise: Access to limited-edition physical merchandise</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contracts" class="doc-section">
+      <h2>Smart Contracts</h2>
+      <div class="section-content">
+        <h3>Overview</h3>
+        <p>Smart contracts power the Dreamer ecosystem, enabling secure, automated, and trustless interactions. These contracts govern every aspect of DREAM—from tokenomics to governance and staking.</p>
+        
+        <h3>Key Features</h3>
+        <ul>
+          <li>Security: All contracts are audited by third-party firms.</li>
+          <li>Automation: Smart contracts execute actions without manual intervention.</li>
+          <li>Transparency: Open-source code ensures complete accountability.</li>
+        </ul>
+
+        <h3>Contract Architecture</h3>
+        <ul>
+          <li>Token Contract: ERC-20 implementation with anti-bot measures</li>
+          <li>Staking Contract: Handles deposits, rewards, and withdrawals</li>
+          <li>Governance Contract: Manages proposal creation and voting</li>
+          <li>NFT Contract: ERC-721 implementation for DREAM NFTs</li>
+        </ul>
+
+        <h3>Security Measures</h3>
+        <ul>
+          <li>Multi-signature wallet for administrative functions</li>
+          <li>Time-locks on critical protocol changes</li>
+          <li>Emergency pause functionality for extreme situations</li>
+          <li>Regular security audits and bug bounty programs</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="community" class="doc-section">
+      <h2>Community</h2>
+      <div class="section-content">
+        <h3>Overview</h3>
+        <p>The Dreamer community is the heart of the project. Together, we transcend boundaries, uniting dreamers worldwide to create a decentralized future where everyone has a voice.</p>
+        
+        <h3>Engagement Programs</h3>
+        <ul>
+          <li>Airdrops: Regular token distributions to active community members</li>
+          <li>Contests: Creative challenges with DREAM token rewards</li>
+          <li>Referral System: Earn rewards for growing the community</li>
+          <li>Educational Content: Learn about DeFi and blockchain technology</li>
+        </ul>
+
+        <h3>Community Channels</h3>
+        <ul>
+          <li>Discord: Main hub for community interaction and support</li>
+          <li>Twitter: Official announcements and updates</li>
+          <li>Telegram: Global and local community groups</li>
+          <li>Medium: In-depth articles and project updates</li>
+        </ul>
+
+        <h3>Community Guidelines</h3>
+        <ul>
+          <li>Respectful Communication: Maintain professional and friendly discourse</li>
+          <li>No Financial Advice: Community members should not provide investment advice</li>
+          <li>Content Quality: Share meaningful, relevant content only</li>
+          <li>Collaborative Spirit: Help others and contribute positively</li>
+        </ul>
+
+        <h3>Future Initiatives</h3>
+        <ul>
+          <li>DREAM Academy: Educational platform for blockchain knowledge</li>
+          <li>Regional Meetups: Local community gatherings worldwide</li>
+          <li>Hackathons: Developer competitions for ecosystem growth</li>
+          <li>Charity Programs: Community-driven social impact initiatives</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="resources" class="doc-section">
+      <h2>Resources</h2>
+      <div class="section-content">
+        <h3>Developer Resources</h3>
+        <ul>
+          <li>
+            <a href="https://github.com/dream-protocol" target="_blank" rel="noopener noreferrer">
+              GitHub Repository
+            </a>
+          </li>
+          <li>
+            <a href="/api" target="_blank" rel="noopener noreferrer">
+              API Documentation
+            </a>
+          </li>
+          <li>
+            <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer">
+              Technical Whitepaper
+            </a>
+          </li>
+          <li>
+            <a href="/audits" target="_blank" rel="noopener noreferrer">
+              Smart Contract Audits
+            </a>
+          </li>
+        </ul>
+
+        <h3>Community Resources</h3>
+        <ul>
+          <li>
+            <a href="/guidelines" target="_blank" rel="noopener noreferrer">
+              Community Guidelines
+            </a>
+          </li>
+          <li>
+            <a href="/governance" target="_blank" rel="noopener noreferrer">
+              Governance Framework
+            </a>
+          </li>
+          <li>
+            <a href="/staking-guide" target="_blank" rel="noopener noreferrer">
+              Staking Guide
+            </a>
+          </li>
+          <li>
+            <a href="/faq" target="_blank" rel="noopener noreferrer">
+              FAQ
+            </a>
+          </li>
+        </ul>
+
+        <h3>External Links</h3>
+        <ul>
+          <li>
+            <a href="https://dexscreener.com/base/0xc2Ebb232C42cF6af79DC991C5CDd5d04d2DA2dE8" target="_blank" rel="noopener noreferrer">
+              DexScreener
+            </a>
+          </li>
+          <li>
+            <a href="https://www.coingecko.com/en/coins/dream" target="_blank" rel="noopener noreferrer">
+              CoinGecko
+            </a>
+          </li>
+          <li>
+            <a href="https://coinmarketcap.com/currencies/dream" target="_blank" rel="noopener noreferrer">
+              CoinMarketCap
+            </a>
+          </li>
+          <li>
+            <a href="https://etherscan.io/token/0xc2Ebb232C42cF6af79DC991C5CDd5d04d2DA2dE8" target="_blank" rel="noopener noreferrer">
+              Etherscan
+            </a>
+          </li>
+        </ul>
+
+        <h3>Media Kit</h3>
+        <ul>
+          <li>
+            <a href="/brand" target="_blank" rel="noopener noreferrer">
+              Brand Guidelines
+            </a>
+          </li>
+          <li>
+            <a href="/assets" target="_blank" rel="noopener noreferrer">
+              Logos and Assets
+            </a>
+          </li>
+          <li>
+            <a href="/press" target="_blank" rel="noopener noreferrer">
+              Press Kit
+            </a>
+          </li>
+          <li>
+            <a href="/media" target="_blank" rel="noopener noreferrer">
+              Media Coverage
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</DocsLayout>
+
+<script>
+  import Chart from 'chart.js/auto';
+
+  // Token Distribution Chart
+  const distributionCtx = document.getElementById('distributionChart')?.getContext('2d');
+  if (distributionCtx) {
+    new Chart(distributionCtx, {
+      type: 'doughnut',
+      data: {
+        labels: [
+          'Community Reserve (50%)',
+          'Liquidity Pool (30%)',
+          'Marketing and Partnerships (10%)',
+          'Development Fund (5%)',
+          'Team Allocation (5%)'
+        ],
+        datasets: [{
+          data: [50, 30, 10, 5, 5],
+          backgroundColor: [
+            'rgba(59, 130, 246, 0.9)',
+            'rgba(59, 130, 246, 0.7)',
+            'rgba(59, 130, 246, 0.5)',
+            'rgba(59, 130, 246, 0.3)',
+            'rgba(59, 130, 246, 0.2)'
+          ],
+          borderColor: '#161616',
+          borderWidth: 2,
+          hoverOffset: 15
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '60%',
+        plugins: {
+          legend: {
+            position: 'right',
+            labels: {
+              color: '#ffffff',
+              padding: 20,
+              font: {
+                size: 14
+              }
+            }
+          },
+          tooltip: {
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            titleColor: '#ffffff',
+            bodyColor: '#ffffff',
+            padding: 12,
+            bodyFont: {
+              size: 14
+            },
+            bodySpacing: 4,
+            boxPadding: 4
+          }
+        },
+        animation: {
+          animateScale: true,
+          animateRotate: true
+        }
+      }
+    });
+  }
+
+  // Growth Chart
+  const growthCtx = document.getElementById('growthChart')?.getContext('2d');
+  if (growthCtx) {
+    const months = Array.from({length: 13}, (_, i) => i);
+    const values = months.map(month => 
+      10000000 * Math.pow(1 + 0.10/365, 365 * month/12)
+    );
+
+    const gradient = growthCtx.createLinearGradient(0, 0, 0, 400);
+    gradient.addColorStop(0, 'rgba(59, 130, 246, 0.2)');
+    gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
+
+    new Chart(growthCtx, {
+      type: 'line',
+      data: {
+        labels: months.map(m => `Month ${m}`),
+        datasets: [{
+          label: 'Staked Value (DREAM)',
+          data: values,
+          borderColor: 'rgba(59, 130, 246, 1)',
+          borderWidth: 2,
+          backgroundColor: gradient,
+          fill: true,
+          tension: 0.4,
+          pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+          pointBorderColor: '#fff',
+          pointBorderWidth: 2,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgba(59, 130, 246, 1)',
+          pointHoverBorderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+          intersect: false,
+          mode: 'index'
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: 'rgb(139, 139, 139)',
+              font: {
+                size: 14
+              }
+            }
+          },
+          tooltip: {
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            padding: 12,
+            bodyFont: {
+              size: 14
+            },
+            callbacks: {
+              label: function(context) {
+                let value = context.parsed.y;
+                return `${(value / 1000000).toFixed(2)}M DREAM`;
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            grid: {
+              color: 'rgba(255, 255, 255, 0.1)',
+              drawBorder: false
+            },
+            ticks: {
+              color: 'rgb(139, 139, 139)',
+              callback: function(value) {
+                return (Number(value) / 1000000).toFixed(1) + 'M';
+              },
+              font: {
+                size: 12
+              }
+            }
+          },
+          x: {
+            grid: {
+              display: false
+            },
+            ticks: {
+              color: 'rgb(139, 139, 139)',
+              font: {
+                size: 12
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.querySelectorAll('.card').forEach(card => {
+    const glow = card.querySelector('.glow') as HTMLElement;
+    const border = card.querySelector('.card::before') as HTMLElement;
+    
+    card.addEventListener('mousemove', (e: MouseEvent) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      // Calculate distance from edges
+      const distanceFromLeft = x;
+      const distanceFromRight = rect.width - x;
+      const distanceFromTop = y;
+      const distanceFromBottom = rect.height - y;
+      
+      // Border effect threshold
+      const borderThreshold = 50;
+      
+      // Check if mouse is near any edge
+      const isNearEdge = 
+        distanceFromLeft < borderThreshold ||
+        distanceFromRight < borderThreshold ||
+        distanceFromTop < borderThreshold ||
+        distanceFromBottom < borderThreshold;
+      
+      if (glow) {
+        // Update glow position
+        glow.style.left = `${x}px`;
+        glow.style.top = `${y}px`;
+        
+        if (isNearEdge) {
+          // Intensify border glow when near edges
+          const minDistance = Math.min(
+            distanceFromLeft,
+            distanceFromRight,
+            distanceFromTop,
+            distanceFromBottom
+          );
+          const opacity = 0.5 * (1 - minDistance / borderThreshold);
+          card.style.setProperty('--border-opacity', opacity.toString());
+          glow.style.opacity = '0.15'; // Reduced center glow
+          card.style.borderColor = `rgba(59, 130, 246, ${opacity})`;
+        } else {
+          // Normal center glow when not near edges
+          glow.style.opacity = '0.35';
+          card.style.borderColor = 'var(--border-color)';
+        }
+      }
+    });
+
+    card.addEventListener('mouseleave', () => {
+      if (glow) {
+        glow.style.opacity = '0';
+        card.style.borderColor = 'var(--border-color)';
+      }
+    });
+
+    card.addEventListener('mouseenter', () => {
+      if (glow) {
+        glow.style.transition = 'opacity 0.2s ease';
+      }
+    });
+  });
+</script>
+
+<style>
+  .chart-container {
+    height: 400px;
+    margin: 2rem 0;
+    padding: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+  }
+
+  .formula-container {
+    background: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .formula {
+    font-family: 'Courier New', monospace;
+    font-size: 1.2rem;
+    color: var(--accent-blue);
+    padding: 1rem;
+    background: var(--surface-hover);
+    border-radius: 6px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .formula-legend {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .example-container {
+    background: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .calculation {
+    margin: 1rem 0;
+  }
+
+  .result {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+  }
+
+  /* Add styles for resource links */
+  .section-content a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-block;
+  }
+
+  .section-content a:hover {
+    color: var(--accent-blue);
+    transform: translateX(4px);
+  }
+
+  /* Update list styles for links */
+  .section-content li {
+    display: flex;
+    align-items: center;
+  }
+
+  .section-content li::before {
+    margin-right: 0.5rem;
+  }
+</style>
+--- 

@@ -1,0 +1,19 @@
+@import './colors.css';
+
+/* Global text color override */
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+}
+
+/* Ensure all text elements inherit the correct color */
+h1, h2, h3, h4, h5, h6,
+p, span, a, button, input,
+.text-primary {
+  color: var(--text-primary);
+}
+
+/* Ensure secondary text uses the correct color */
+.text-secondary {
+  color: var(--text-secondary);
+} 

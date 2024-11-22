@@ -1,0 +1,23 @@
+:root {
+  /* Base colors */
+  --background: #05060F;
+  --surface: #0A0B17;
+  --surface-hover: #0F1020;
+  
+  /* Text colors */
+  --text-primary: #ffffff;
+  --text-secondary: #8b8b8b;
+  --text-tertiary: #666666;
+  
+  /* Accent colors */
+  --accent-blue: #3b82f6;
+  --accent-blue-hover: #60a5fa;
+  
+  /* Borders */
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-color-hover: rgba(255, 255, 255, 0.15);
+  
+  /* Overlays */
+  --overlay-light: rgba(255, 255, 255, 0.05);
+  --overlay-medium: rgba(255, 255, 255, 0.08);
+} 

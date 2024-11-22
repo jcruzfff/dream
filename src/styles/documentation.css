@@ -1,0 +1,244 @@
+@import './colors.css';
+
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+header {
+  margin: 4rem 0 3rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.description {
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  max-width: 800px;
+}
+
+/* Card styles */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0 4rem;
+  position: relative;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: var(--accent-blue);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 8px;
+  z-index: -2;
+}
+
+.card .glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: var(--accent-blue);
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(50px);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+}
+
+.card:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-color-hover);
+  transform: translateY(-2px);
+}
+
+.card-content h3 {
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.card-content p {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+/* Documentation section styles */
+.doc-section {
+  margin: 4rem 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.doc-section h2 {
+  font-size: 2rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.section-content {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.section-content h3 {
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  margin: 2rem 0 1rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.section-content ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.section-content li {
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  color: var(--text-secondary);
+}
+
+.section-content li::before {
+  content: "—";
+  color: rgba(59, 130, 246, 0.5);
+  position: absolute;
+  left: 0;
+}
+
+/* Code blocks */
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+code {
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+th, td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  color: var(--text-primary);
+  font-weight: 500;
+  background: var(--surface);
+}
+
+td {
+  color: var(--text-secondary);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+@media (max-width: 768px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Update button styles */
+.feedback-btn {
+  padding: 0.75rem 1.5rem;
+  background: rgba(59, 130, 246, 0.1); /* Subtle blue background */
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 24px; /* More rounded corners */
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+}
+
+.feedback-btn:hover {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+.feedback-btn:active {
+  transform: translateY(0px);
+}
+
+/* Add glowing effect */
+.feedback-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(59, 130, 246, 0.1),
+    rgba(59, 130, 246, 0.2)
+  );
+  border-radius: 24px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.feedback-btn:hover::before {
+  opacity: 1;
+} 
