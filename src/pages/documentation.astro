@@ -465,10 +465,6 @@ import '../styles/documentation.css';
       10000000 * Math.pow(1 + 0.10/365, 365 * month/12)
     );
 
-    const gradient = growthCtx.createLinearGradient(0, 0, 0, 400);
-    gradient.addColorStop(0, 'rgba(59, 130, 246, 0.2)');
-    gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
-
     new Chart(growthCtx, {
       type: 'line',
       data: {
@@ -477,76 +473,39 @@ import '../styles/documentation.css';
           label: 'Staked Value (DREAM)',
           data: values,
           borderColor: 'rgba(59, 130, 246, 1)',
-          borderWidth: 2,
-          backgroundColor: gradient,
+          backgroundColor: 'rgba(59, 130, 246, 0.1)',
           fill: true,
-          tension: 0.4,
-          pointBackgroundColor: 'rgba(59, 130, 246, 1)',
-          pointBorderColor: '#fff',
-          pointBorderWidth: 2,
-          pointRadius: 4,
-          pointHoverRadius: 6,
-          pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: 'rgba(59, 130, 246, 1)',
-          pointHoverBorderWidth: 2
+          tension: 0.4
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        interaction: {
-          intersect: false,
-          mode: 'index'
-        },
         plugins: {
           legend: {
             labels: {
-              color: 'rgb(139, 139, 139)',
-              font: {
-                size: 14
-              }
-            }
-          },
-          tooltip: {
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            padding: 12,
-            bodyFont: {
-              size: 14
-            },
-            callbacks: {
-              label: function(context) {
-                let value = context.parsed.y;
-                return `${(value / 1000000).toFixed(2)}M DREAM`;
-              }
+              color: 'rgb(139, 139, 139)'
             }
           }
         },
         scales: {
           y: {
             grid: {
-              color: 'rgba(255, 255, 255, 0.1)',
-              drawBorder: false
+              color: 'rgba(255, 255, 255, 0.1)'
             },
             ticks: {
               color: 'rgb(139, 139, 139)',
               callback: function(value) {
                 return (Number(value) / 1000000).toFixed(1) + 'M';
-              },
-              font: {
-                size: 12
               }
             }
           },
           x: {
             grid: {
-              display: false,
-              drawBorder: false
+              display: false
             },
             ticks: {
-              color: 'rgb(139, 139, 139)',
-              font: {
-                size: 12
-              }
+              color: 'rgb(139, 139, 139)'
             }
           }
         }
